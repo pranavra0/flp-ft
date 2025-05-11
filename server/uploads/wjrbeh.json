@@ -1,0 +1,28 @@
+{
+  "password": "wjrbeh",
+  "filename": "1746980314790-Aston Martin Music Remake.flp",
+  "effectPlugins": [
+    "Fruity Wrapper",
+    "Sytrus",
+    "Fruity soundfont player",
+    "Fruity Parametric EQ 2",
+    "Maximus",
+    "Wave Candy",
+    "Fruity Limiter",
+    "Fruity Soft Clipper",
+    "Fruity Parametric EQ",
+    "Fruity Stereo Shaper",
+    "Fruity Delay 2",
+    "Soundgoodizer",
+    "Fruity Multiband Compressor"
+  ],
+  "sampleList": [
+    "%FLStudioData%\\Patches\\Packs\\Librerias de Tribal\\kicks\\msi-kick (1).wav",
+    "%FLStudioData%\\Patches\\Packs\\Legacy\\Club\\Clap Basic.wav",
+    "%FLStudioData%\\Patches\\Packs\\K.E onThe Track Kit\\K.E On The Track Kit\\K.E on the track Hats & Percs\\K.E on the track HATSandPERC (36).wav",
+    "%FLStudioData%\\Patches\\Packs\\Legacy\\HipHop\\HIP_Hat_5.wav",
+    "%FLStudioData%\\Patches\\Packs\\Scott Storch Kit\\Scott Storch\\Storch Snare Drums\\S_s05_01_SdHkz 96_ (3).wav",
+    "%FLStudioData%\\Patches\\Packs\\Trunk Bangerz Kit\\Fx's\\Trunk fx's (21).wav",
+    "%FLStudioData%\\Patches\\Packs\\Drum Kit 08\\FLS_cd2-tak.wav"
+  ]
+}

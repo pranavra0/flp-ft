@@ -1,0 +1,20 @@
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.half {
+  width: 45%;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.message {
+  margin-top: 20px;
+  color: #d6336c;
+  text-align: center;
+}
+
