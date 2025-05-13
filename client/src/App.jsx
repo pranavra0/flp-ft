@@ -65,57 +65,67 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <div className="section">
-        <h2>Upload FLP</h2>
-        <form onSubmit={handleUpload}>
-          <input type="file" onChange={handleFileChange} />
-          <button type="submit">Upload</button>
-        </form>
-        {message && <p className="message">{message}</p>}
-      </div>
+    <>
+      <header className="logo-header">
+        <img src="/logo.png" alt="Logo" className="logo" />
+      </header>
 
-      <div className="section">
-        <h2>Download FLP</h2>
-        <input
-          type="text"
-          placeholder="Enter password"
-          value={downloadCode}
-          onChange={(e) => setDownloadCode(e.target.value)}
-        />
-        <button onClick={handleDownload}>Download</button>
-        <button onClick={handleShowPlugins}>Show Required Plugins</button>
+      <div className="container">
+        <div className="section">
+          <h2>Upload FLP</h2>
+          <form onSubmit={handleUpload}>
+            <input type="file" onChange={handleFileChange} />
+            <button type="submit">Upload</button>
+          </form>
+          {message && <p className="message">{message}</p>}
+        </div>
 
-        {plugins.length > 0 && (
-          <div>
-            <h4>Required Plugins</h4>
-            <ul>
-              {plugins.map((plugin, idx) => (
-                <li key={idx}>{plugin}</li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <div className="section">
+          <h2>Download FLP</h2>
+          <input
+            type="text"
+            placeholder="Enter password"
+            value={downloadCode}
+            onChange={(e) => setDownloadCode(e.target.value)}
+          />
+          <button onClick={handleDownload}>Download</button>
+          <button onClick={handleShowPlugins}>Show Required Plugins</button>
 
-        {samples.length > 0 && (
-          <div>
-            <button
-              className="dropdown-toggle"
-              onClick={() => setShowSamples(!showSamples)}
-            >
-              {showSamples ? 'Hide Samples' : 'Show Required Samples'}
-            </button>
-            {showSamples && (
+          {plugins.length > 0 && (
+            <div>
+              <h4>Required Plugins</h4>
               <ul>
-                {samples.map((sample, idx) => (
-                  <li key={idx}>{sample}</li>
+                {plugins.map((plugin, idx) => (
+                  <li key={idx}>{plugin}</li>
                 ))}
               </ul>
-            )}
-          </div>
-        )}
+            </div>
+          )}
+
+          {samples.length > 0 && (
+            <div>
+              <button
+                className="dropdown-toggle"
+                onClick={() => setShowSamples(!showSamples)}
+              >
+                {showSamples ? 'Hide Samples' : 'Show Required Samples'}
+              </button>
+              {showSamples && (
+                <ul>
+                  {samples.map((sample, idx) => (
+                    <li key={idx}>{sample}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+
+      <footer className="info-section">
+        <a href="mailto:youremail@example.com" className="email-link">@</a>
+      </footer>
+    </>
   );
 }
 
