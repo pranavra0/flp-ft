@@ -10,6 +10,7 @@ function App() {
   const [downloadCode, setDownloadCode] = useState('');
   const [plugins, setPlugins] = useState([]);
   const [samples, setSamples] = useState([]);
+  const [showSamples, setShowSamples] = useState(false);
 
   const handleFileChange = (e) => setFile(e.target.files[0]);
 
@@ -54,10 +55,10 @@ function App() {
     if (!downloadCode) return setMessage('Enter a password');
     try {
       const res = await axios.get(`http://localhost:3001/info/${downloadCode}`);
-      const uniquePlugins = [... new Set(res.data.effectPlugins)]
+      const uniquePlugins = [...new Set(res.data.effectPlugins)];
       const uniqueSamples = [...new Set(res.data.sampleList)];
       setPlugins(uniquePlugins);
-      setSamples(uniqueSamples)
+      setSamples(uniqueSamples);
     } catch {
       setMessage('Failed to fetch plugin info');
     }
@@ -65,16 +66,16 @@ function App() {
 
   return (
     <div className="container">
-      <div className="half">
+      <div className="section">
         <h2>Upload FLP</h2>
         <form onSubmit={handleUpload}>
           <input type="file" onChange={handleFileChange} />
           <button type="submit">Upload</button>
         </form>
-        {password && <p>Password: <strong>{password}</strong></p>}
+        {message && <p className="message">{message}</p>}
       </div>
 
-      <div className="half">
+      <div className="section">
         <h2>Download FLP</h2>
         <input
           type="text"
@@ -95,18 +96,25 @@ function App() {
             </ul>
           </div>
         )}
+
+        {samples.length > 0 && (
+          <div>
+            <button
+              className="dropdown-toggle"
+              onClick={() => setShowSamples(!showSamples)}
+            >
+              {showSamples ? 'Hide Samples' : 'Show Required Samples'}
+            </button>
+            {showSamples && (
+              <ul>
+                {samples.map((sample, idx) => (
+                  <li key={idx}>{sample}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
       </div>
-      {samples.length > 0 && (
-        <div>
-          <h4>Used Samples</h4>
-          <ul>
-            {samples.map((sample, idx) => (
-              <li key={idx}>{sample}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {message && <p className="message">{message}</p>}
     </div>
   );
 }
