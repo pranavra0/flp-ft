@@ -40,12 +40,11 @@ app.post("/upload", upload.single("flp"), (req, res) => {
 
     // write to file 
     const effectPlugins = [...new Set(projectInfo.effectPlugins)];
-    const sampleList = [...new Set(projectInfo.sampleList)]
+    const parsed metadata like project name, tempo, etc.
     const data = {
       password,
       filename: req.file.filename,
-      effectPlugins, // parsed metadata like project name, tempo, etc.
-      sampleList,
+      effectPlugins, // req plugins
     };
 
     // Save mapping to a JSON file
@@ -66,18 +65,22 @@ app.get("/download/:password", (req, res) => {
     res.status(404).json({ error: "File not found" });
   }
 });
+
 app.get('/info/:password', (req, res) => {
   const pass = req.params.password;
   try {
     const mapping = JSON.parse(fs.readFileSync(`uploads/${pass}.json`, "utf8"));
-    res.json({
-      effectPlugins: mapping.effectPlugins || [],
-      sampleList: mapping.sampleList || []
+    const flpPath = path.join(__dirname, "uploads", mapping.filename);
+    flp.parseFile(flpPath, (err, projectInfo) => {
+      if (err) return res.status(500).json({ error: "Parsing failed" });
+      res.json({ effectPlugins: projectInfo.effectPlugins || [] });
     });
   } catch {
     res.status(404).json({ error: "File not found" });
   }
-});// Corrected listen statement
+});
+
+// Corrected listen statement
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
